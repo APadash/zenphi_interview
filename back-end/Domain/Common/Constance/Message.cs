@@ -5,5 +5,10 @@ namespace Domain.Common.Helper
         public const string SuccessfullMessage = "Operation is Successfull";
         public const string ErrorMessage = "The operation has encountered an error";
 
+
+        public const string NameRequiredErrorMessage = "The Name is required";
+        public const string EmailRequiredErrorMessage = "The Email address is required";
+        public const string EmailFormatErrorMessage = "Invalid Email Address";
+
     }
 }
