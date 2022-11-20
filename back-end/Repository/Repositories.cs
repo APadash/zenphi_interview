@@ -13,7 +13,7 @@ using Z.EntityFramework.Plus;
 namespace Repository
 {
     public class Repositories<TEntity> : IRepositories<TEntity>
-        where TEntity : class, IEntity
+        where TEntity : class
     {
         protected readonly ZenphiDbContext DbContext;
         public DbSet<TEntity> Entities { get; }

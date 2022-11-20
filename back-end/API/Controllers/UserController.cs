@@ -48,5 +48,12 @@ namespace API.Controllers
             var result = await _service.GetService(cancellationToken);
             return new Response<List<UserDto>>().ResponseSending(result);
         }
+
+        [HttpGet("{userId}")]
+        public async Task<IActionResult> GetById(int userId, CancellationToken cancellationToken)
+        {
+            var result = await _service.GetByIdService(userId, cancellationToken);
+            return new Response<UserDto>().ResponseSending(result);
+        }
     }
 }

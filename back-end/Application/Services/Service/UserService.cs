@@ -71,5 +71,17 @@ namespace Application.Services.Service
 
             return new ApiResponse<List<UserDto>>(ResponseStatusEnum.Success, map, Message.SuccessfullMessage);
         }
+
+        public async Task<ApiResponse<UserDto>> GetByIdService(int userId, CancellationToken cancellationToken)
+        {
+            var result = await _repository.GetByIdAsync(cancellationToken, userId);
+            if (result == null)
+            {
+                return new ApiResponse<UserDto>(ResponseStatusEnum.NotFound, null, Message.NotFoundErrorMessage);
+            }
+            var map = ObjectMapper.Mapper.Map<UserDto>(result);
+
+            return new ApiResponse<UserDto>(ResponseStatusEnum.Success, map, Message.SuccessfullMessage);
+        }
     }
 }
