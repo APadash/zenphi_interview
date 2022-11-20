@@ -10,7 +10,6 @@ using Microsoft.OpenApi.Models;
 using Repository.Data;
 using Repository;
 using Application.Services.Service;
-using Application.Services.IService;
 
 namespace zenphi_interview
 {
@@ -61,7 +60,7 @@ namespace zenphi_interview
 
             services.AddScoped(typeof(IRepositories<>), typeof(Repositories<>));
 
-            services.AddScoped<IUserService, UserService>();
+            services.AddScoped<UserService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

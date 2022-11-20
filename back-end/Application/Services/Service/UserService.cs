@@ -4,7 +4,6 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using Application.Mapping;
-using Application.Services.IService;
 using AutoMapper;
 using Domain.Common.Dto.User;
 using Domain.Common.Enum;
@@ -14,7 +13,7 @@ using Repository;
 
 namespace Application.Services.Service
 {
-    public class UserService : IUserService
+    public class UserService
     {
         IRepositories<User> _repository;
         public IMapper _mapper { get; }
@@ -41,12 +40,16 @@ namespace Application.Services.Service
 
         public async Task<ApiResponse<bool>> EditService(UserDto edit, CancellationToken cancellationToken)
         {
-            var user = await _repository.ExistsAsync(x => x.Email == edit.Email && x.Id != edit.Id);
-            if (user)
+            var user = await _repository.FindAsync(x => x.Id == edit.Id, cancellationToken);
+            if (user == null)
+            {
+                return new ApiResponse<bool>(ResponseStatusEnum.NotFound, false, Message.NotFoundErrorMessage);
+            }
+            var emailExist = await _repository.ExistsAsync(x => x.Email == edit.Email && x.Id != edit.Id);
+            if (emailExist)
             {
                 return new ApiResponse<bool>(ResponseStatusEnum.BadRequest, false, Message.EmailExistErrorMessage);
             }
-
             var map = ObjectMapper.Mapper.Map<User>(edit);
             await _repository.UpdateAsync(map, cancellationToken, true);
 

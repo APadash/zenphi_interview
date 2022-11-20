@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
-using Application.Services.IService;
+using Application.Services.Service;
 using Domain.Common.Dto.User;
 using Domain.Common.Helper;
 using Microsoft.AspNetCore.Mvc;
@@ -14,9 +14,9 @@ namespace API.Controllers
     [Route("api/[controller]")]
     public class UserController : ControllerBase
     {
-        private readonly IUserService _service;
+        private readonly UserService _service;
 
-        public UserController(IUserService service)
+        public UserController(UserService service)
         {
             _service = service;
         }
