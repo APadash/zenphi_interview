@@ -40,5 +40,16 @@ namespace Application.Services.Service
 
             return new ApiResponse<bool>(ResponseStatusEnum.Success, true, Message.SuccessfullMessage);
         }
+
+        public async Task<ApiResponse<bool>> DeleteService(int userId, CancellationToken cancellationToken)
+        {
+            var user = await _repository.ExistsAsync(x => x.Id == userId);
+            if (!user)
+            {
+                return new ApiResponse<bool>(ResponseStatusEnum.NotFound, false, Message.NotFoundErrorMessage);
+            }
+            await _repository.DeleteAsync(x => x.Id == userId, cancellationToken, true);
+            return new ApiResponse<bool>(ResponseStatusEnum.Success, true, Message.SuccessfullMessage);
+        }
     }
 }

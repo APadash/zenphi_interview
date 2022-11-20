@@ -4,6 +4,7 @@ namespace Domain.Common.Helper
     {
         public const string SuccessfullMessage = "Operation is Successfull";
         public const string ErrorMessage = "The operation has encountered an error";
+        public const string NotFoundErrorMessage = "Item not Found!";
 
 
         public const string NameRequiredErrorMessage = "The Name is required";

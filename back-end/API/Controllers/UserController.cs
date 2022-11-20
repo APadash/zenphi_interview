@@ -22,17 +22,24 @@ namespace API.Controllers
         }
 
         [HttpPost]
-        public async Task<ApiResponse<bool>> Create(UserDto add, CancellationToken cancellationToken)
+        public async Task<IActionResult> Create(UserDto add, CancellationToken cancellationToken)
         {
             var result = await _service.AddService(add, cancellationToken);
-            return result;
+            return new Response<bool>().ResponseSending(result);
         }
 
         [HttpPut]
-        public async Task<ApiResponse<bool>> Update(UserDto edit, CancellationToken cancellationToken)
+        public async Task<IActionResult> Update(UserDto edit, CancellationToken cancellationToken)
         {
             var result = await _service.EditService(edit, cancellationToken);
-            return result;
+            return new Response<bool>().ResponseSending(result);
+        }
+
+        [HttpDelete]
+        public async Task<IActionResult> Delete(int userId, CancellationToken cancellationToken)
+        {
+            var result = await _service.DeleteService(userId, cancellationToken);
+            return new Response<bool>().ResponseSending(result);
         }
     }
 }
