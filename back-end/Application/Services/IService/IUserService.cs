@@ -11,5 +11,6 @@ namespace Application.Services.IService
     public interface IUserService
     {
         Task<ApiResponse<bool>> AddService(UserDto add, CancellationToken cancellationToken);
+        Task<ApiResponse<bool>> EditService(UserDto edit, CancellationToken cancellationToken);
     }
 }

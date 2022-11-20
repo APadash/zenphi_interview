@@ -32,5 +32,13 @@ namespace Application.Services.Service
 
             return new ApiResponse<bool>(ResponseStatusEnum.Success, true, Message.SuccessfullMessage);
         }
+
+        public async Task<ApiResponse<bool>> EditService(UserDto edit, CancellationToken cancellationToken)
+        {
+            var map = ObjectMapper.Mapper.Map<User>(edit);
+            await _repository.UpdateAsync(map, cancellationToken, true);
+
+            return new ApiResponse<bool>(ResponseStatusEnum.Success, true, Message.SuccessfullMessage);
+        }
     }
 }

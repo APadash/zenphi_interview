@@ -28,5 +28,11 @@ namespace API.Controllers
             return result;
         }
 
+        [HttpPut]
+        public async Task<ApiResponse<bool>> Update(UserDto edit, CancellationToken cancellationToken)
+        {
+            var result = await _service.EditService(edit, cancellationToken);
+            return result;
+        }
     }
 }
