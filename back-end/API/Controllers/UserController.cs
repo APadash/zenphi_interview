@@ -41,5 +41,12 @@ namespace API.Controllers
             var result = await _service.DeleteService(userId, cancellationToken);
             return new Response<bool>().ResponseSending(result);
         }
+
+        [HttpGet]
+        public async Task<IActionResult> Get(CancellationToken cancellationToken)
+        {
+            var result = await _service.GetService(cancellationToken);
+            return new Response<List<UserDto>>().ResponseSending(result);
+        }
     }
 }

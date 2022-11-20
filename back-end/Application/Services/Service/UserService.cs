@@ -27,6 +27,12 @@ namespace Application.Services.Service
 
         public async Task<ApiResponse<bool>> AddService(UserDto add, CancellationToken cancellationToken)
         {
+            var user = await _repository.ExistsAsync(x => x.Email == add.Email);
+            if (user)
+            {
+                return new ApiResponse<bool>(ResponseStatusEnum.BadRequest, false, Message.EmailExistErrorMessage);
+            }
+
             var map = ObjectMapper.Mapper.Map<User>(add);
             await _repository.AddAsync(map, cancellationToken, true);
 
@@ -35,6 +41,12 @@ namespace Application.Services.Service
 
         public async Task<ApiResponse<bool>> EditService(UserDto edit, CancellationToken cancellationToken)
         {
+            var user = await _repository.ExistsAsync(x => x.Email == edit.Email && x.Id != edit.Id);
+            if (user)
+            {
+                return new ApiResponse<bool>(ResponseStatusEnum.BadRequest, false, Message.EmailExistErrorMessage);
+            }
+
             var map = ObjectMapper.Mapper.Map<User>(edit);
             await _repository.UpdateAsync(map, cancellationToken, true);
 
@@ -50,6 +62,14 @@ namespace Application.Services.Service
             }
             await _repository.DeleteAsync(x => x.Id == userId, cancellationToken, true);
             return new ApiResponse<bool>(ResponseStatusEnum.Success, true, Message.SuccessfullMessage);
+        }
+
+        public async Task<ApiResponse<List<UserDto>>> GetService(CancellationToken cancellationToken)
+        {
+            var result = await _repository.GetAsync(cancellationToken);
+            var map = ObjectMapper.Mapper.Map<List<UserDto>>(result);
+
+            return new ApiResponse<List<UserDto>>(ResponseStatusEnum.Success, map, Message.SuccessfullMessage);
         }
     }
 }

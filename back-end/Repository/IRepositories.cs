@@ -17,6 +17,7 @@ namespace Repository
 
         Task<bool> ExistsAsync(Expression<Func<TEntity, bool>> predicate);
         Task<TEntity> FindAsync(Expression<Func<TEntity, bool>> predicate, CancellationToken cancellationToken);
+        Task<List<TEntity>> GetAsync(CancellationToken cancellationToken);
         Task<List<TEntity>> SearchAsync(Expression<Func<TEntity, bool>> predicate, CancellationToken cancellationToken);
         ValueTask<TEntity> GetByIdAsync(CancellationToken cancellationToken, params object[] ids);
         Task AddAsync(TEntity entity, CancellationToken cancellationToken, bool saveNow = true);

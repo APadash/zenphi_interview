@@ -34,6 +34,12 @@ namespace Repository
         {
             return await Entities.FirstOrDefaultAsync(predicate, cancellationToken);
         }
+
+        public virtual async Task<List<TEntity>> GetAsync(CancellationToken cancellationToken)
+        {
+            return await Entities.ToListAsync(cancellationToken);
+        }
+
         public virtual async Task<List<TEntity>> SearchAsync(Expression<Func<TEntity, bool>> predicate, CancellationToken cancellationToken)
         {
             return await Entities.Where(predicate).ToListAsync(cancellationToken);

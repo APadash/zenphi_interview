@@ -13,5 +13,6 @@ namespace Application.Services.IService
         Task<ApiResponse<bool>> AddService(UserDto add, CancellationToken cancellationToken);
         Task<ApiResponse<bool>> EditService(UserDto edit, CancellationToken cancellationToken);
         Task<ApiResponse<bool>> DeleteService(int userId, CancellationToken cancellationToken);
+        Task<ApiResponse<List<UserDto>>> GetService(CancellationToken cancellationToken);
     }
 }
