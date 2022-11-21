@@ -1,3 +1,3 @@
 export class AppConstants {
-    public static Api_EndPoint = 'http://localhost:5000';
+    public static Api_EndPoint = 'http://localhost:5000/api/';
 }

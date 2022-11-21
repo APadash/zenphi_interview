@@ -1,0 +1,25 @@
+<form class="form">
+   
+    <mat-form-field class="example-form-field">
+        <mat-label>Name</mat-label>
+        <input matInput type="text" required [(ngModel)]="userData.name" name="name" autocomplete="off">
+    </mat-form-field>
+
+    <mat-form-field class="example-form-field">
+        <mat-label>Email</mat-label>
+        <input matInput type="email" required name="email" [(ngModel)]="userData.email"  autocomplete="off" >
+        <!-- <mat-error *ngIf="emailFormControl.hasError('email') && !emailFormControl.hasError('required')"> [formControl]="emailFormControl"
+            Please enter a valid email address
+          </mat-error>
+          <mat-error *ngIf="emailFormControl.hasError('required')">
+            Email is <strong>required</strong>
+          </mat-error> -->
+    </mat-form-field>
+
+    <div class="div-btn">
+        <button mat-raised-button (click)="cancel()">Cancel</button>
+        <button mat-raised-button color="accent"  (click)="Save()">Save</button>
+    </div>
+
+</form>
+
