@@ -9,3 +9,12 @@ table {
 .demo-button+.demo-button {
     margin-left: 8px;
 }
+
+.div-options {
+    display: flex;
+    justify-content: space-between;
+}
+
+.search-input {
+    height: 1rem;
+}

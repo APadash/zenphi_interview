@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
 import { UserModel } from 'src/app/data/models/Users/user.model';
 import { AppConstants } from 'src/app/constants/app.constant';
 import { ApiResponse } from 'src/app/data/models/Helper/apiResponse.interface';
@@ -9,8 +9,10 @@ import { ApiResponse } from 'src/app/data/models/Helper/apiResponse.interface';
     providedIn: 'root'
 })
 export class UserService {
-    
+
     endPoint = AppConstants.Api_EndPoint + 'User/';
+
+    userTableUpdate = new Subject<UserModel>();
 
     constructor(private http: HttpClient) { }
 
@@ -32,5 +34,9 @@ export class UserService {
 
     DeleteUser(userId: number): Observable<ApiResponse<any>> {
         return this.http.delete<ApiResponse<any>>(this.endPoint + '?userId=' + userId);
+    }
+
+    UserDataPass(item: UserModel) {
+        this.userTableUpdate.next(item);
     }
 }

@@ -7,8 +7,10 @@ import {MatTableModule} from '@angular/material/table';
 import {MatCardModule} from '@angular/material/card';
 import {MatButtonModule} from '@angular/material/button';
 import {MatDialogModule} from '@angular/material/dialog';
-import { ConfirmationModalModule } from "src/app/shared/confirm-dialog/confirm-dialog.component.module";
 import {MatSidenavModule} from '@angular/material/sidenav';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import { MatInputModule } from "@angular/material/input";
+import {MatIconModule} from '@angular/material/icon';
 
 @NgModule({
     declarations: [UserListComponent],
@@ -20,8 +22,10 @@ import {MatSidenavModule} from '@angular/material/sidenav';
         MatButtonModule,
         MatDialogModule,
         UserListRoutingModule,
-        ConfirmationModalModule,
-        MatSidenavModule
+        MatSidenavModule,
+        MatFormFieldModule,
+        MatInputModule,
+        MatIconModule
     ]
 })
 export class UserListModule { }

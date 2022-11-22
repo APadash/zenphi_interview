@@ -13,18 +13,20 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatCardModule } from '@angular/material/card';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { DirectivesModule } from './core/directives/directives.module';
-// import { UserInfoComponent } from './modules/user/user-info/user-info.component';
+
 
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { UserInfoModule } from './modules/user/user-info/user-info.module';
+import { ConfirmationModalModule } from './shared/confirm-dialog/confirm-dialog.component.module';
+import { SharedModule } from './shared/shared.module';
+import {MatSnackBarModule} from '@angular/material/snack-bar';
 
 @NgModule({
   declarations: [
     AppComponent,
     ContentLayoutComponent,
     HeaderComponent,
-    // UserInfoComponent
   ],
   imports: [
     BrowserModule,
@@ -38,7 +40,10 @@ import { UserInfoModule } from './modules/user/user-info/user-info.module';
     DirectivesModule,
     MatIconModule,
     MatInputModule,
-    UserInfoModule
+    UserInfoModule,
+    SharedModule,
+    ConfirmationModalModule,
+    MatSnackBarModule
   ],
   providers: [
     {
